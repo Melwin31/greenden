@@ -96,5 +96,31 @@
                 <p>@ 2021 Greenden.com</p>
               </section>
               <script src="contact.js"></script>
+              <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("search");
+    const productCards = document.querySelectorAll("#product-container > div");
+
+    searchInput.addEventListener("keyup", () => {
+      const query = searchInput.value.toLowerCase().trim();
+      let anyVisible = false;
+
+      productCards.forEach(card => {
+        const productName = card.querySelector("h1").textContent.toLowerCase().trim();
+        if (productName.includes(query)) {
+          card.style.display = "block";
+          anyVisible = true;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      if (!anyVisible && query !== "") {
+        alert("No matching products found!");
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
